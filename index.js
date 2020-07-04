@@ -33,9 +33,7 @@ app.use((err, req, res, next) => {
     next();
 })
 
-const port = 3333;
-
-app.listen(port, function () {
+app.listen(process.env.PORT || 5000, function () {
     console.log(`App listening on port ${port}!`);
 });
 
