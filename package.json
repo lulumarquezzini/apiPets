@@ -6,8 +6,9 @@
   "scripts": {
     "create-tables": "babel-node ./src/db/dbConnection createAllTables",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
-    "setup": "npm-run-all -p create-tables"
+    "start": "node index.js",
+    "setup": "npm-run-all -p create-tables",
+    "heroku-postbuild": "npm-run-all -p create-tables"
   },
   "keywords": [],
   "author": "",
