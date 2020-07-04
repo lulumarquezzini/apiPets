@@ -3,6 +3,8 @@ const router = express.Router();
 const pController = require('../controllers/productController');
 const { celebrate, Segments, Joi } = require('celebrate');
 
+router.get('/products', pController.list);
+
 router.post('/products', celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),

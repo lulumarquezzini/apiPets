@@ -1,5 +1,7 @@
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
+const morgan = require('morgan');
+const logger = require('./src/utils/logger');
 const app = express();
 
 // Add middleware for parsing URL encoded bodies (which are usually sent by browser)
@@ -8,12 +10,15 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use(morgan('tiny', { stream: logger.stream }));
+
 const userRoutes = require('./src/routes/userRoute');
 const productRoutes = require('./src/routes/productRoute');
 const checkToken = require('./src/utils/checkToken');
 
 app.use('/api/v1', userRoutes);
 app.use('/api/v1', checkToken, productRoutes);
+
 
 // Custom server error handler
 app.use((err, req, res, next) => {
@@ -28,7 +33,7 @@ app.use((err, req, res, next) => {
     next();
 })
 
-const port = 3000;
+const port = 3333;
 
 app.listen(port, function () {
     console.log(`App listening on port ${port}!`);
