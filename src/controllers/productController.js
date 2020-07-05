@@ -21,7 +21,7 @@ const list = async (request, response) => {
     if(page == last) { next = null};
     const meta = { page: parseInt(page), count: rows.length, first: 1, last: last, previous: previous, next: next, total: parseInt(total)};
     const message = { status: 'success', data: rows, meta: meta};
-    return response.status(201).send(message);
+    return response.status(200).send(message);
   } catch (error) {
     return response.status(500).send({status: error.statusCode, error: error.message});
   }
@@ -50,7 +50,7 @@ const update = async (request, response) => {
   try {
       await dbQuery.query(productQuery, values);
       const message = { status: 'success', message: 'Product updated!'};
-      return response.status(201).send(message);
+      return response.status(200).send(message);
     } catch (error) {
       return response.status(500).send({status: error.statusCode, error: error.message});
     }
@@ -65,7 +65,7 @@ const destroy = async (request, response) => {
   try {
     await dbQuery.query(productQuery, value);
     const message = { status: 'success', message: 'Product deleted!'};
-    return response.status(201).send(message);
+    return response.status(200).send(message);
   } catch (error) {
     return response.status(500).send({status: error.statusCode, error: error.message});
   }
