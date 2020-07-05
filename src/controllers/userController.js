@@ -34,7 +34,7 @@ const login = async(request, response) => {
         const hashedpass = rows[0].password;
         const token = generateToken(rows[0].uuid, rows[0].email, rows[0].name);
         if(comparePassword(password, hashedpass)){
-            return response.status(201).send({status: 'success', message: 'Login successful!', token: token});
+            return response.status(200).send({status: 'success', message: 'Login successful!', token: token});
         }
         else {
             return response.status(401).send({status: 'error', message: 'Wrong password!'});
@@ -46,8 +46,13 @@ const login = async(request, response) => {
 
 }
 
+const logout = async(response) => {
+    return response.status(200).send({status: 'success', message: 'Logout successful!', token: null});
+}
+
 
 module.exports = {
     registerUser,
-    login
+    login,
+    logout
 };

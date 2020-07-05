@@ -14,5 +14,7 @@ router.post('/users', celebrate({
 
 router.post('/login', uController.login);
 
+router.post('/logout', uController.logout);
+
 
 module.exports = router;
